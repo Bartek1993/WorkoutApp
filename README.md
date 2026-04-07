@@ -1,1 +1,4 @@
-This is my RPG themed workout app
+My Fitness app
+- Log workouts
+- Track your weight, BMI and Hip to waist ratio
+- Tools: Stopwatch, Timer
