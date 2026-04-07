@@ -37,5 +37,7 @@ public class PlayerData: MonoBehaviour
         PlayerPrefs.SetFloat("PlayerWaistCirc", waistCirc);
         
         
+        
+        
     }
 }

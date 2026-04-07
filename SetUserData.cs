@@ -6,7 +6,8 @@ public class SetUserData : MonoBehaviour
 {
     [SerializeField]
     private PlayerData playerUserData;
-    public Text[] userInputFields;
+    public InputField [] userInputFields;
+    public MasterScript masterScript;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,17 +23,22 @@ public class SetUserData : MonoBehaviour
 
     public void SaveUserData()
     {
-        foreach (Text text in userInputFields)
+        foreach (InputField text in userInputFields)
         {
-            if (text.text != "")
+            if (text.text != "" && userInputFields[0].text != "")
             {
                 playerUserData.SavePlayerData(userInputFields[0].text,int.Parse(userInputFields[1].text), 
                     float.Parse(userInputFields[2].text), float.Parse(userInputFields[3].text),
                     float.Parse(userInputFields[4].text), float.Parse(userInputFields[5].text));
+                Debug.Log("Data saved");
+                masterScript.promptWindow.promptWindowMain.SetActive(true);
+                StartCoroutine(masterScript.promptWindow.DisplayPrompt(1,2));
+                
             }
             else
             {
-                Debug.Log("Please enter a valid input");
+                masterScript.promptWindow.promptWindowMain.SetActive(true);
+                StartCoroutine(masterScript.promptWindow.DisplayPrompt(0,1));
             }
         }
 
