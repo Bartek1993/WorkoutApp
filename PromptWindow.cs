@@ -4,8 +4,8 @@ using UnityEngine.UI;
 
 public class PromptWindow : MonoBehaviour
 {
-    public string[] promptStrings = {"Please enter username", "WELOCME TO WORKOUT ADVENTURE!"};
-    public GameObject promptWindowMain, promptWindowText;
+    public string[] promptStrings;
+    public GameObject promptWindowMain, promptFrame, promptWindowText;
     public Text promptText;
     public Color [] promptWindowColor;
     public MasterScript masterScript;
@@ -21,19 +21,31 @@ public class PromptWindow : MonoBehaviour
         
     }
 
-    public IEnumerator DisplayPrompt(int promptID, int promptColorID)
+    public void DisplayPrompt(int promptID, int promptColorID, bool isWarning)
     {
+        if (isWarning)
+        {
+            masterScript.audioManager.OnCancel();
+        }
+        else
+        {
+            masterScript.audioManager.OnApprove();
+        }
+
         promptText.text = promptStrings[promptID];
+        promptFrame.GetComponent<Image>().color = promptWindowColor[promptColorID];
         promptWindowText.GetComponent<Image>().color = promptWindowColor[promptColorID];
-        yield return new WaitForSeconds(5f);
-        promptWindowMain.SetActive(false);
+        
     }
 
     public void CloseWarningWindow()
     {
+        
         StopAllCoroutines();
+        promptFrame.GetComponent<Image>().color = promptWindowColor[0];
         promptWindowText.GetComponent<Image>().color = promptWindowColor[0];
         promptWindowMain.SetActive(false);
+        
         
     }
 }
