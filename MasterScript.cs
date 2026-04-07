@@ -6,6 +6,7 @@ public class MasterScript : MonoBehaviour
     public SetUserData setUserData;
     public PromptWindow promptWindow;
     public AudioManager audioManager;
+    public CanvasManager canvasManager;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

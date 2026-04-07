@@ -29,32 +29,28 @@ public class SetUserData : MonoBehaviour
 
     public void SaveUserData()
     {
-        if (userInputFields[0].text.Length > 5)
+        if (userInputFields[0].text.Length is >= 5 and <= 15)
         {
             playerUserData.SavePlayerData(userInputFields[0].text,int.Parse(userInputFields[1].text), 
                 float.Parse(userInputFields[2].text), float.Parse(userInputFields[3].text),
                 float.Parse(userInputFields[4].text), float.Parse(userInputFields[5].text));
             Debug.Log("Data saved");
             masterScript.promptWindow.promptWindowMain.SetActive(true);
-            masterScript.promptWindow.DisplayPrompt(1,2, false);
-            StartCoroutine(nameof(LoadMenu));
+            masterScript.promptWindow.DisplayPrompt(1,2, true, false,0, 25);
+            PlayerPrefs.SetInt("userDetailsComplete",1);
+            masterScript.canvasManager.StartGame();
         }
         else
         {
+           
             masterScript.promptWindow.promptWindowMain.SetActive(true);
-            masterScript.promptWindow.DisplayPrompt(0,1, true);
+            masterScript.promptWindow.DisplayPrompt(0,1, true,false,0,75);
         }
 
       
     }
 
-    public IEnumerator LoadMenu()
-    {
-        
-        yield return new WaitForSecondsRealtime(1);
-        masterScript.promptWindow.CloseWarningWindow();
-        
-    }
+  
 
 
 
