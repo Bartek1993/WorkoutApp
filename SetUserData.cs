@@ -10,23 +10,10 @@ public class SetUserData : MonoBehaviour
     public InputField [] userInputFields;
     public MasterScript masterScript;
     public Button submitButton;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        userInputFields[0].text = "Username";
-        userInputFields[1].text = "00";
-        userInputFields[2].text = "00";
-        userInputFields[3].text = "00";
-        userInputFields[4].text = "00";
-        userInputFields[5].text = "00";
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /// <summary>
+    /// WORK IN PROGRESS
+    /// </summary>
     public void SaveUserData()
     {
         if (userInputFields[0].text.Length is >= 5 and <= 15)
@@ -42,7 +29,6 @@ public class SetUserData : MonoBehaviour
         }
         else
         {
-           
             masterScript.promptWindow.promptWindowMain.SetActive(true);
             masterScript.promptWindow.DisplayPrompt(0,1, true,false,0,75);
         }
@@ -50,7 +36,9 @@ public class SetUserData : MonoBehaviour
       
     }
 
-  
+    
+
+
 
 
 

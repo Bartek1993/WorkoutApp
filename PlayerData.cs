@@ -2,33 +2,101 @@ using UnityEngine;
 
 public class PlayerData: MonoBehaviour
 {
-    string PlayerName {get; set; }
-    int PlayerAge {get; set; }
-    float PlayerHeight {get; set; }
-    float PlayerWeight {get; set; }
-    float PlayerHipCirc {get; set; }
-    float PlayerWaistCirc {get; set; }
+    private string playerName {get; set; }
+    private int playerAge {get; set; }
+    private float playerHeight {get; set; }
+    private float playerWeight {get; set; }
+    private float playerHipCirc {get; set; }
+    private float playerWaistCirc {get; set; }
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        SetData();
     }
 
-    // Update is called once per frame
-    void Update()
+    /// <summary>
+    /// CHECK FOR PRIMARY USER INFORMATION, IF NOT MAKE SOME
+    /// </summary>
+    public void SetData()
     {
-        
+        if (!PlayerPrefs.HasKey("PlayerName"))
+        {
+            playerName = "User";
+            PlayerPrefs.SetString("PlayerName", "User");
+        }
+        else
+        {
+            playerName = PlayerPrefs.GetString("PlayerName");
+        }
+
+        if (!PlayerPrefs.HasKey("PlayerAge"))
+        {
+            playerAge = 25;
+            PlayerPrefs.SetInt("PlayerAge", playerAge);
+        }
+        else
+        {
+            playerAge = PlayerPrefs.GetInt("PlayerAge");
+        }
+
+        if (!PlayerPrefs.HasKey("PlayerHeight"))
+        {
+            playerHeight = 176;
+            PlayerPrefs.SetFloat("PlayerHeight", playerHeight);
+        }
+        else
+        {
+            playerHeight = PlayerPrefs.GetFloat("PlayerHeight");
+        }
+
+        if (!PlayerPrefs.HasKey("PlayerWeight"))
+        {
+            playerWeight = 78;
+            PlayerPrefs.SetFloat("PlayerWeight", playerWeight);
+        }
+        else
+        {
+            playerWeight = PlayerPrefs.GetFloat("PlayerWeight");
+        }
+
+        if (!PlayerPrefs.HasKey("PlayerHipCirc"))
+        {
+            playerHipCirc = 90;
+            PlayerPrefs.SetFloat("PlayerHipCirc", playerHipCirc);
+        }
+        else
+        {
+            playerHipCirc = PlayerPrefs.GetFloat("PlayerHipCirc");
+        }
+
+        if (!PlayerPrefs.HasKey("PlayerWaistCirc"))
+        {
+            playerWaistCirc = 87;
+            PlayerPrefs.SetFloat("PlayerWaistCirc", playerWaistCirc);
+        }
+        else
+        {
+            playerWaistCirc = PlayerPrefs.GetFloat("PlayerWaistCirc");
+        }
     }
 
+    /// <summary>
+    /// CALL THIS METHOD WHEN YOU WANT TO SAVE PRIMARY USER DETAILS
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="age"></param>
+    /// <param name="height"></param>
+    /// <param name="weight"></param>
+    /// <param name="hipCirc"></param>
+    /// <param name="waistCirc"></param>
     public void SavePlayerData(string name, int age, float height, float weight, float hipCirc, float waistCirc)
     {
-        PlayerName = name;
-        PlayerAge = age;
-        PlayerHeight = height;
-        PlayerWeight = weight;
-        PlayerHipCirc = hipCirc;
-        PlayerWaistCirc = waistCirc;
+        playerName = name;
+        playerAge = age;
+        playerHeight = height;
+        playerWeight = weight;
+        playerHipCirc = hipCirc;
+        playerWaistCirc = waistCirc;
         PlayerPrefs.SetString("PlayerName", name );
         PlayerPrefs.SetInt("PlayerAge", age);
         PlayerPrefs.SetFloat("PlayerHeight", height);
@@ -36,8 +104,39 @@ public class PlayerData: MonoBehaviour
         PlayerPrefs.SetFloat("PlayerHipCirc", hipCirc);
         PlayerPrefs.SetFloat("PlayerWaistCirc", waistCirc);
         
-        
-        
-        
+    }
+
+    /// <summary>
+    /// GET USER DATA
+    /// </summary>
+    /// <returns></returns>
+    public int GetAge()
+    {
+        return playerAge;
+    }
+
+    public float GetHeight()
+    {
+        return playerHeight;
+    }
+
+    public float GetWeight()
+    {
+        return playerWeight;
+    }
+
+    public float GetHipCirc()
+    {
+        return playerHipCirc;
+    }
+
+    public float GetWaistCirc()
+    {
+        return playerWaistCirc;
+    }
+
+    public string GetPlayerName()
+    {
+        return playerName;
     }
 }

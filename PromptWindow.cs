@@ -10,21 +10,20 @@ public class PromptWindow : MonoBehaviour
     public Text promptText;
     public Color [] promptWindowColor;
     public MasterScript masterScript;
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    /// <summary>
+    /// CALL THIS METHOD TO DISPLAY WINDOW 
+    /// </summary>
+    /// <param name="promptID"> choose text from array of strings</param>
+    /// <param name="promptColorID"> choose color of the window from array of colors</param>
+    /// <param name="isWarning"> </param>
+    /// <param name="isTimed"> if it is timed it coroutine within the method will be called and window will be closed after user
+    /// specified amount of time</param>
+    /// <param name="timeToClose"></param>
+    /// <param name="fontSize">set font size of the message</param>
     public void DisplayPrompt(int promptID, int promptColorID, bool isWarning, bool isTimed, float timeToClose, int fontSize)
     {
-        promptText.fontSize = fontSize;
+      
         if (isWarning)
         {
             masterScript.audioManager.OnCancel();
@@ -43,6 +42,7 @@ public class PromptWindow : MonoBehaviour
         }
 
         promptText.text = promptStrings[promptID];
+        promptText.fontSize = fontSize;
         promptFrame.GetComponent<Image>().color = promptWindowColor[promptColorID];
         promptWindowText.GetComponent<Image>().color = promptWindowColor[promptColorID];
 
@@ -50,7 +50,7 @@ public class PromptWindow : MonoBehaviour
 
     }
 
-    public void CloseWarningWindow(bool isWarning)
+    public void CloseWarningWindow()
     {
         StopAllCoroutines();
         promptFrame.GetComponent<Image>().color = promptWindowColor[0];
@@ -62,7 +62,7 @@ public class PromptWindow : MonoBehaviour
 
     public IEnumerator TimedPrompt(float timeToClose)
     {
-        yield return new WaitForSeconds(timeToClose);
+        yield return new WaitForSecondsRealtime(timeToClose);
         promptWindowMain.SetActive(false);
     }
 }
