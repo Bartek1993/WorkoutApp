@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class CanvasManager : MonoBehaviour
 {
-    public GameObject userDetailsCanvas, mainCanvas;
+    public GameObject userDetailsCanvas, mainCanvas, homepageCanvas;
     public int userDetailsComplete, userMenuTutorialComplete;
     public MasterScript masterScript;
 

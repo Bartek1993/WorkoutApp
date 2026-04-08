@@ -1,18 +1,23 @@
+using System;
 using UnityEngine;
 
 public class AddButton : MonoBehaviour
 {
-    public GameObject mainPanel, addExercisePanel;
-    public void OpenMainPanel()
+    public GameObject mainPanel;
+    public bool selectionPanelIsOpen = false;
+
+
+    private void Update()
     {
-        mainPanel.SetActive(true);
+        mainPanel.SetActive(selectionPanelIsOpen);
     }
 
-    public void AddExercisePanel()
+    public void OpenMainPanel()
     {
-        addExercisePanel.SetActive(true);
-        mainPanel.SetActive(false);
+        selectionPanelIsOpen = !selectionPanelIsOpen;
     }
+
+    
 
 
 

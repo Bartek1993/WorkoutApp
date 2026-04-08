@@ -11,7 +11,7 @@ public class UserStatsPanel : MonoBehaviour
     public MasterScript masterScript;
 
 
-    private void OnEnable()
+    private void Start()
     {
         GetStats();
     }
@@ -41,8 +41,8 @@ public class UserStatsPanel : MonoBehaviour
     {
         userBMI = GetBmi(float.Parse(userDetails[3]), float.Parse(userDetails[2])/100);
         userHipToWaistRatio= GetHipToWaistRatio(float.Parse(userDetails[4]), float.Parse(userDetails[5]));
-        BMI.text = "BMI: " + bmiDescription+ "\n" + userBMI.ToString("N1");
-        HIPTOWAIST.text = "HIP TO WAIST RATIO: \n" + userHipToWaistRatio.ToString("N1");
+        BMI.text = "BMI: " + userBMI.ToString("N1");
+        HIPTOWAIST.text = "HIP TO WAIST RATIO: " + userHipToWaistRatio.ToString("N1");
         ////SET ADDITIONAL DESCRIPTION AND COLOR FOR BMI TEXT
         if (userBMI < 18.5f)
         {
