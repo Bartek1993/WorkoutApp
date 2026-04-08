@@ -7,7 +7,7 @@ public class UserStatsPanel : MonoBehaviour
     public string bmiDescription, hipToWaistDescription;
     public string[] userDetails;
     public float userBMI, userHipToWaistRatio;
-    public Text BMI, HIPTOWAIST;
+    public Text BMI, HIPTOWAIST, USERNAME;
     public MasterScript masterScript;
 
 
@@ -28,6 +28,7 @@ public class UserStatsPanel : MonoBehaviour
         userDetails[3] = masterScript.playerData.GetWeight().ToString(); //// User Weight KG
         userDetails[4] = masterScript.playerData.GetHipCirc().ToString(); //// User Hip CM
         userDetails[5] = masterScript.playerData.GetWaistCirc().ToString(); //// User Waist CM
+        USERNAME.text = userDetails[0];
         SetMeasurments();
 
 
