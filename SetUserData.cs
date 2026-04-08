@@ -10,6 +10,7 @@ public class SetUserData : MonoBehaviour
     public InputField [] userInputFields;
     public MasterScript masterScript;
     public Button submitButton;
+    
 
     /// <summary>
     /// WORK IN PROGRESS

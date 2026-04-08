@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerData: MonoBehaviour
 {
@@ -9,10 +11,16 @@ public class PlayerData: MonoBehaviour
     private float playerHipCirc {get; set; }
     private float playerWaistCirc {get; set; }
     
+    public Dropdown genderDropdown;
+    
     void Start()
     {
         SetData();
+        genderDropdown.value = 0;
+        
     }
+
+   
 
     /// <summary>
     /// CHECK FOR PRIMARY USER INFORMATION, IF NOT MAKE SOME
@@ -78,6 +86,11 @@ public class PlayerData: MonoBehaviour
         {
             playerWaistCirc = PlayerPrefs.GetFloat("PlayerWaistCirc");
         }
+
+        if (!PlayerPrefs.HasKey("Gender"))
+        {
+            PlayerPrefs.SetInt("Gender", 0);
+        }
     }
 
     /// <summary>
@@ -103,7 +116,20 @@ public class PlayerData: MonoBehaviour
         PlayerPrefs.SetFloat("PlayerWeight", weight);
         PlayerPrefs.SetFloat("PlayerHipCirc", hipCirc);
         PlayerPrefs.SetFloat("PlayerWaistCirc", waistCirc);
-        
+    }
+
+    public void SetGenderDropdown()
+    {
+        if (genderDropdown.value == 0)
+        {
+            Debug.Log("You Choose Male");
+            PlayerPrefs.SetInt("Gender", 0);
+        }
+        else if (genderDropdown.value == 1)
+        {
+            Debug.Log("You Choose Female");
+            PlayerPrefs.SetInt("Gender", 1);
+        }
     }
 
     /// <summary>
