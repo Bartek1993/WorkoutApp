@@ -18,7 +18,7 @@ public class PermissionsRationaleDialog : MonoBehaviour
         if (GUI.Button(new Rect(kDialogWidth - 110, kDialogHeight - 30, 100, 20), "Yes"))
         {
 #if PLATFORM_ANDROID
-            Permission.RequestUserPermission(Permission.Microphone);
+            Permission.RequestUserPermission(Permission.FineLocation);
 #endif
             windowOpen = false;
         }
