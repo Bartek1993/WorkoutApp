@@ -165,4 +165,17 @@ public class PlayerData: MonoBehaviour
     {
         return playerName;
     }
+
+    public void UpdatePlayerData(float weight, float height, float hipCirc, float waistCirc)
+    {
+        playerWeight = weight;
+        playerHeight = height;
+        playerHipCirc = hipCirc;
+        playerWaistCirc = waistCirc;
+        
+        PlayerPrefs.SetFloat("PlayerHeight", playerHeight);
+        PlayerPrefs.SetFloat("PlayerWeight", playerWeight);
+        PlayerPrefs.SetFloat("PlayerHipCirc", playerHipCirc);
+        PlayerPrefs.SetFloat("PlayerWaistCirc", playerWaistCirc);
+    }
 }

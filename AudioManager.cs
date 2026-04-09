@@ -29,4 +29,9 @@ public class AudioManager : MonoBehaviour
     {
         mainSfx.PlayOneShot(sfx[1]);
     }
+
+    public void OnSuccess()
+    {
+        mainSfx.PlayOneShot(sfx[2]);
+    }
 }

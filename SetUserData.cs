@@ -9,7 +9,6 @@ public class SetUserData : MonoBehaviour
     private PlayerData playerUserData;
     public InputField [] userInputFields;
     public MasterScript masterScript;
-    public Button submitButton;
     
 
     /// <summary>
@@ -24,20 +23,21 @@ public class SetUserData : MonoBehaviour
                 float.Parse(userInputFields[4].text), float.Parse(userInputFields[5].text));
             Debug.Log("Data saved");
             masterScript.promptWindow.promptWindowMain.SetActive(true);
-            masterScript.promptWindow.DisplayPrompt(1,2, true, false,0, 25);
+            masterScript.promptWindow.DisplayPrompt(1,2, true, false,0, 45);
             PlayerPrefs.SetInt("userDetailsComplete",1);
-            masterScript.canvasManager.StartGame();
+            masterScript.StartCheck();
         }
         else
         {
             masterScript.promptWindow.promptWindowMain.SetActive(true);
             masterScript.promptWindow.DisplayPrompt(0,1, true,false,0,75);
         }
-
-      
     }
+    
 
     
+
+
 
 
 
