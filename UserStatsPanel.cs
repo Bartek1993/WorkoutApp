@@ -1,9 +1,40 @@
 using System;
-using Unity.Android.Gradle.Manifest;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using Application = UnityEngine.Application;
+using Permission = UnityEngine.Android.Permission;
+
+public class PermissionsRationaleDialog : MonoBehaviour
+{
+    const int kDialogWidth = 600;
+    const int kDialogHeight = 350;
+    private bool windowOpen = true;
+
+    void DialogeDisplay(int windowID)
+    {
+        GUI.Label(new Rect(10, 20, kDialogWidth - 20, kDialogHeight - 50), "Permission to use ACTIVITY_RECOGNITION ?");
+        GUI.Button(new Rect(10, kDialogHeight - 30, 100, 20), "No");
+        if (GUI.Button(new Rect(kDialogWidth - 110, kDialogHeight - 30, 100, 20), "Yes"))
+        {
+#if PLATFORM_ANDROID
+            Permission.RequestUserPermission(Permission.Microphone);
+#endif
+            windowOpen = false;
+        }
+    }
+
+    void OnGUI ()
+    {
+        if (windowOpen)
+        {
+            Rect rect = new Rect((Screen.width / 2) - (kDialogWidth / 2), (Screen.height / 2) - (kDialogHeight / 2), kDialogWidth, kDialogHeight);
+            GUI.ModalWindow(0, rect, DialogeDisplay, "Permissions Request Dialog");
+        }
+    }
+}
+
+
 
 public class UserStatsPanel : MonoBehaviour
 {
@@ -14,16 +45,41 @@ public class UserStatsPanel : MonoBehaviour
     public MasterScript masterScript;
     public Image bmiCircle, hipCircle;
     public float dailySteps;
+    private GameObject _androidPermDialog;
+    
 
     private void Start()
     {
         GetStats();
-        GetPermissionStepCounter();
+        //GetPermissionRequests();
     }
 
-    private void GetPermissionStepCounter()
+    private void GetPermissionRequests()
     {
+        #if PLATFORM_ANDROID
+        if (Application.platform == RuntimePlatform.Android)
+        {
+            Debug.Log("Target Platform is Android");
+            if (!Permission.HasUserAuthorizedPermission("android.permission.ACTIVITY_RECOGNITION"))
+            {
+                Permission.RequestUserPermission("android.permission.ACTIVITY_RECOGNITION");
+                _androidPermDialog = new GameObject();
+            }
+        }
+        #endif
+        else
+        {
+            Debug.Log("Target Platform is PC");
+        }
+    }
 
+    private void OnGUI()
+    {
+        if (!Permission.HasUserAuthorizedPermission("android.permission.ACTIVITY_RECOGNITION"))
+        {
+            Permission.RequestUserPermission("android.permission.ACTIVITY_RECOGNITION");
+            _androidPermDialog.AddComponent<PermissionsRationaleDialog>();
+        }
     }
 
 

@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEditor;
 
 public class MasterScript : MonoBehaviour
 {
@@ -12,7 +13,6 @@ public class MasterScript : MonoBehaviour
     public UpdateMeasurements updateMeasurements;
     public int userDetailsComplete, userMenuTutorialComplete;
     public GameObject userDetailInputPanel, userMainPanel;
-
 
     void Awake()
     {
@@ -29,6 +29,7 @@ public class MasterScript : MonoBehaviour
 
     void Start()
     {
+        
         if (!PlayerPrefs.HasKey("userDetailsComplete"))
         {
             userDetailsComplete = 0;
@@ -42,6 +43,8 @@ public class MasterScript : MonoBehaviour
 
         StartCheck();
     }
+
+   
 
     public void StartCheck()
     {
