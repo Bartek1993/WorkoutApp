@@ -11,6 +11,16 @@ public class PlayerData: MonoBehaviour
     private float playerHipCirc {get; set; }
     private float playerWaistCirc {get; set; }
     
+    private float neckCirc {get; set; }
+    private float leftArmCirc {get; set; }
+    private float rightArmCirc {get; set; }
+    private float leftQuadricepCirc {get; set; }
+    private float rightQuadricepCirc {get; set; }
+    private float leftCalvCirc {get; set; }
+    private float rightCalvCirc {get; set; }
+    private float chestCirc {get; set; }
+    private float shoulderCirc {get; set; }
+    
     public Dropdown genderDropdown;
     
     void Start()
@@ -23,10 +33,11 @@ public class PlayerData: MonoBehaviour
    
 
     /// <summary>
-    /// CHECK FOR PRIMARY USER INFORMATION, IF NOT MAKE SOME
+    /// CHECK FOR PRIMARY AND SECONDARY USER INFORMATION, IF NOT MAKE SOME
     /// </summary>
     public void SetData()
     {
+        ///// PRIMARY PLAYER DETAILS ////
         if (!PlayerPrefs.HasKey("PlayerName"))
         {
             playerName = "User";
@@ -90,6 +101,98 @@ public class PlayerData: MonoBehaviour
         if (!PlayerPrefs.HasKey("Gender"))
         {
             PlayerPrefs.SetInt("Gender", 0);
+        }
+        
+        ///// SECONDARY PLAYER DATA ////
+        
+        if(!PlayerPrefs.HasKey("PlayerNeckCirc"))
+        {
+            neckCirc = 35;
+            PlayerPrefs.SetFloat("PlayerNeckCirc", neckCirc);
+        }
+        else
+        {
+            neckCirc = PlayerPrefs.GetFloat("PlayerNeckCirc");
+        }
+
+        if (!PlayerPrefs.HasKey("PlayerLeftArmCirc"))
+        {
+            leftArmCirc = 35;
+            PlayerPrefs.SetFloat("PlayerLeftArmCirc", leftArmCirc);
+        }
+        else
+        {
+            leftArmCirc = PlayerPrefs.GetFloat("PlayerLeftArmCirc");
+        }
+
+        if (!PlayerPrefs.HasKey("PlayerRightArmCirc"))
+        {
+            rightArmCirc = 35;
+            PlayerPrefs.SetFloat("PlayerRightArmCirc", rightArmCirc);
+        }
+        else
+        {
+            rightArmCirc = PlayerPrefs.GetFloat("PlayerRightArmCirc");
+        }
+
+        if (!PlayerPrefs.HasKey("PlayerLeftQuadricepCirc"))
+        {
+            leftQuadricepCirc = 75;
+            PlayerPrefs.SetFloat("PlayerLeftQuadricepCirc", leftQuadricepCirc);
+        }
+        else
+        {
+            leftQuadricepCirc = PlayerPrefs.GetFloat("PlayerLeftQuadricepCirc");
+        }
+
+        if (!PlayerPrefs.HasKey("PlayerRightQuadricepCirc"))
+        {
+            rightQuadricepCirc = 75;
+            PlayerPrefs.SetFloat("PlayerRightQuadricepCirc", rightQuadricepCirc);
+        }
+        else
+        {
+            rightQuadricepCirc = PlayerPrefs.GetFloat("PlayerRightQuadricepCirc");
+        }
+
+        if (!PlayerPrefs.HasKey("PlayerLeftCalvCirc"))
+        {
+            leftCalvCirc = 35;
+            PlayerPrefs.SetFloat("PlayerLeftCalvCirc", leftCalvCirc);
+        }
+        else
+        {
+            leftCalvCirc = PlayerPrefs.GetFloat("PlayerLeftCalvCirc");
+        }
+
+        if (!PlayerPrefs.HasKey("PlayerRightCalvCirc"))
+        {
+            rightCalvCirc = 35;
+            PlayerPrefs.SetFloat("PlayerRightCalvCirc", rightCalvCirc);
+        }
+        else
+        {
+            rightCalvCirc = PlayerPrefs.GetFloat("PlayerRightCalvCirc");
+        }
+
+        if (!PlayerPrefs.HasKey("PlayerChestCirc"))
+        {
+            chestCirc = 75;
+            PlayerPrefs.SetFloat("PlayerChestCirc", chestCirc);
+        }
+        else
+        {
+            chestCirc = PlayerPrefs.GetFloat("PlayerChestCirc");
+        }
+
+        if (!PlayerPrefs.HasKey("PlayerShoulderCirc"))
+        {
+            shoulderCirc = 85;
+            PlayerPrefs.SetFloat("PlayerShoulderCirc", shoulderCirc);
+        }
+        else
+        {
+            shoulderCirc = PlayerPrefs.GetFloat("PlayerShoulderCirc");
         }
     }
 
@@ -166,16 +269,39 @@ public class PlayerData: MonoBehaviour
         return playerName;
     }
 
-    public void UpdatePlayerData(float weight, float height, float hipCirc, float waistCirc)
+    public void UpdatePlayerData(float weight, float height, float hipCirc, float waistCirc, 
+        float neck, float leftArm, float rightArm, float leftQuip, float rightQuip, float leftCalv, float rightCalv,
+        float chest, float shoulder)
     {
+        //// PRIMARY INFO
         playerWeight = weight;
         playerHeight = height;
         playerHipCirc = hipCirc;
         playerWaistCirc = waistCirc;
-        
         PlayerPrefs.SetFloat("PlayerHeight", playerHeight);
         PlayerPrefs.SetFloat("PlayerWeight", playerWeight);
         PlayerPrefs.SetFloat("PlayerHipCirc", playerHipCirc);
         PlayerPrefs.SetFloat("PlayerWaistCirc", playerWaistCirc);
+        //// SECONDARY
+        neckCirc = neck;
+        leftArmCirc = leftArm;
+        rightArmCirc = rightArm;
+        leftQuadricepCirc = leftQuip;
+        rightQuadricepCirc = rightQuip;
+        leftCalvCirc = leftCalv;
+        rightCalvCirc = rightCalv;
+        chestCirc = chest;
+        shoulderCirc = shoulder;
+        PlayerPrefs.SetFloat("PlayerNeckCirc", neckCirc);
+        PlayerPrefs.SetFloat("PlayerLeftArmCirc", leftArmCirc);
+        PlayerPrefs.SetFloat("PlayerRightArmCirc", rightArmCirc);
+        PlayerPrefs.SetFloat("PlayerLeftQuadricepCirc", leftQuadricepCirc);
+        PlayerPrefs.SetFloat("PlayerRightQuadricepCirc", rightQuadricepCirc);
+        PlayerPrefs.SetFloat("PlayerLeftCalvCirc", leftCalvCirc);
+        PlayerPrefs.SetFloat("PlayerRightCalvCirc", rightCalvCirc);
+        PlayerPrefs.SetFloat("PlayerChestCirc", chestCirc);
+        PlayerPrefs.SetFloat("PlayerShoulderCirc", shoulderCirc);
+
+        
     }
 }

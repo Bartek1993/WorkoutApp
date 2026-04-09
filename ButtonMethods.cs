@@ -30,4 +30,27 @@ public class ButtonMethods : MonoBehaviour
         
     }
 
+    public void ClearMeasurementData()
+    {
+        masterScript.updateMeasurements.ClearInputFields();
+        masterScript.userStatsPanel.GetStats();
+    }
+    
+    public void GetInformation(int buttonID)
+    {
+        masterScript.promptWindow.promptWindowMain.SetActive(true);
+        if (buttonID == 0)
+        {
+            masterScript.promptWindow.DisplayPrompt(4,0, true, false,
+                0, 65);
+        }
+        if (buttonID == 1)
+        {
+            masterScript.promptWindow.DisplayPrompt(5,0, true, false,
+                0, 65);
+        }
+
+        
+    }
+
 }
