@@ -26,7 +26,7 @@ public class PromptWindow : MonoBehaviour
       
         if (isWarning)
         {
-            masterScript.audioManager.OnCancel();
+        
             closeButton.SetActive(true);
         }
         else
